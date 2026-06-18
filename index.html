@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liova.ai — Trust is the shield. Growth is the hunt.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #FAF8F1;
+  --bg2:     #F2EDE0;
+  --bg3:     #E9E2CF;
+  --border:  #D0C8AD;
+  --text:    #1C3526;
+  --text2:   #4A6B58;
+  --text3:   #88A090;
+  --gold:    #C8922E;
+  --gold-lt: #DFB14E;
+  --gold-dk: #9A6E1A;
+  --green:   #2C5438;
+  --white:   #FFFFFF;
+  --shadow:  0 4px 20px rgba(28,53,38,.08);
+  --nav-h:   64px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;}
+
+/* ── NAV ── */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:rgba(250,248,241,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;}
+.topbar-inner{max-width:1160px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
+.logo-img{height:38px;width:auto;display:block;}
+.logo-txt{font-size:19px;font-weight:900;color:var(--green);letter-spacing:-.5px;}
+.logo-txt .dot{color:var(--gold);}
+.tabs-nav{display:flex;gap:2px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:3px;}
+.tab-btn{font-family:inherit;font-size:13px;font-weight:600;padding:7px 15px;border:none;cursor:pointer;border-radius:7px;background:transparent;color:var(--text2);transition:all .15s;white-space:nowrap;}
+.tab-btn:hover{color:var(--text);background:var(--bg3);}
+.tab-btn.active{background:var(--white);color:var(--green);box-shadow:0 1px 4px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.lang-toggle{display:flex;border-radius:7px;border:1px solid var(--border);overflow:hidden;}
+.lang-btn{font-family:inherit;font-size:12px;font-weight:700;padding:5px 11px;border:none;cursor:pointer;background:transparent;color:var(--text2);transition:all .15s;}
+.lang-btn.active{background:var(--gold);color:var(--white);}
+.cta-nav{font-family:inherit;font-size:13px;font-weight:700;padding:8px 18px;border-radius:8px;background:var(--green);color:var(--white);border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:all .15s;}
+.cta-nav:hover{background:var(--gold-dk);transform:translateY(-1px);}
+
+/* ── LAYOUT ── */
+.tab-content{margin-top:var(--nav-h);}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;}
+.container{max-width:1120px;margin:0 auto;padding:0 32px;}
+.section{padding:64px 0;}
+
+/* ── UTILS ── */
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding:4px 12px;border-radius:100px;background:rgba(200,146,46,.1);border:1px solid rgba(200,146,46,.25);margin-bottom:14px;}
+.sec-title{font-size:clamp(26px,3.5vw,38px);font-weight:900;line-height:1.12;color:var(--green);letter-spacing:-.5px;margin-bottom:14px;}
+.sec-sub{font-size:15.5px;color:var(--text2);line-height:1.7;}
+.gold-text{color:var(--gold);}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:14.5px;font-weight:700;padding:12px 24px;border-radius:10px;border:none;cursor:pointer;text-decoration:none;transition:all .15s;}
+.btn-gold{background:var(--gold);color:var(--white);}
+.btn-gold:hover{background:var(--gold-dk);transform:translateY(-1px);box-shadow:0 6px 20px rgba(200,146,46,.3);}
+.btn-outline{background:transparent;color:var(--green);border:2px solid var(--green);}
+.btn-outline:hover{background:var(--green);color:var(--white);}
+
+/* ── HOME ── */
+.hero-wrap{padding:72px 0 44px;}
+.hero-title{font-size:clamp(26px,3.4vw,44px);font-weight:900;line-height:1.1;letter-spacing:-.8px;color:var(--green);margin-bottom:18px;}
+.hero-sub{font-size:17px;color:var(--text2);margin-bottom:32px;max-width:580px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-stats{display:flex;gap:48px;margin-top:48px;padding-top:36px;border-top:1px solid var(--border);}
+.stat-num{font-size:28px;font-weight:900;color:var(--green);}
+.stat-lbl{font-size:12.5px;color:var(--text2);margin-top:2px;}
+
+/* Mission */
+.mission-wrap{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 0;}
+.mission-text{font-size:16px;font-weight:500;color:var(--text2);line-height:1.75;font-style:italic;max-width:820px;}
+
+/* ── SERVICES ── */
+.svc-header{text-align:center;padding:64px 0 48px;}
+.svc-header .sec-sub{margin:12px auto 0;max-width:540px;}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;padding-bottom:64px;}
+.svc-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:34px;transition:box-shadow .2s,transform .2s;}
+.svc-card:hover{box-shadow:0 8px 28px rgba(28,53,38,.1);transform:translateY(-2px);}
+.svc-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;background:linear-gradient(135deg,rgba(200,146,46,.14) 0%,rgba(44,84,56,.07) 100%);border:1px solid rgba(200,146,46,.2);}
+.svc-card h3{font-size:19px;font-weight:800;color:var(--green);margin-bottom:9px;}
+.svc-card p{font-size:13.5px;color:var(--text2);line-height:1.7;margin-bottom:16px;}
+.stags{display:flex;flex-wrap:wrap;gap:7px;}
+.stag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:5px;background:var(--bg2);color:var(--text2);border:1px solid var(--border);}
+
+/* ── HOW IT WORKS ── */
+.hiw-header{text-align:center;padding:64px 0 52px;}
+.hiw-header .sec-sub{margin:12px auto 0;max-width:500px;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-bottom:64px;position:relative;}
+.steps::before{content:'';position:absolute;top:27px;left:calc(16.7% + 14px);right:calc(16.7% + 14px);height:2px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lt) 50%,var(--gold) 100%);opacity:.3;}
+.step{text-align:center;}
+.step-num{width:54px;height:54px;border-radius:50%;background:var(--white);border:2px solid var(--gold);color:var(--gold);font-size:19px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative;z-index:1;box-shadow:0 4px 12px rgba(200,146,46,.18);}
+.step h3{font-size:17px;font-weight:800;color:var(--green);margin-bottom:9px;}
+.step p{font-size:13.5px;color:var(--text2);max-width:280px;margin:0 auto 14px;}
+.step-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.step-tags span{font-size:11px;font-weight:600;padding:3px 9px;border-radius:5px;background:rgba(200,146,46,.08);color:var(--gold-dk);border:1px solid rgba(200,146,46,.18);}
+
+/* ── PRICING ── */
+.price-header{text-align:center;padding:64px 0 40px;}
+.price-header .sec-sub{margin:12px auto 0;max-width:520px;}
+.price-note{text-align:center;font-size:13.5px;color:var(--text2);margin:0 auto 36px;padding:13px 22px;background:rgba(200,146,46,.06);border:1px solid rgba(200,146,46,.2);border-radius:10px;max-width:620px;}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:28px;}
+.price-card{background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:32px 28px;display:flex;flex-direction:column;transition:box-shadow .2s;}
+.price-card:hover{box-shadow:var(--shadow);}
+.price-card.feat{border-color:var(--gold);background:linear-gradient(160deg,rgba(200,146,46,.04) 0%,var(--white) 60%);position:relative;}
+.feat-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--white);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:4px 14px;border-radius:100px;white-space:nowrap;}
+.ptier{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+.pname{font-size:22px;font-weight:900;color:var(--green);margin-bottom:6px;}
+.pdesc{font-size:13px;color:var(--text2);margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.plist{flex:1;list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.plist li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text);}
+.plist li::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0;margin-top:1px;font-size:11px;}
+.cert-row{background:linear-gradient(135deg,rgba(200,146,46,.07) 0%,rgba(44,84,56,.04) 100%);border:1px solid rgba(200,146,46,.28);border-radius:14px;padding:26px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:64px;}
+.cert-row h3{font-size:17px;font-weight:800;color:var(--green);margin-bottom:6px;}
+.cert-row p{font-size:13px;color:var(--text2);max-width:500px;}
+
+/* ── ABOUT ── */
+.about-layout{display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:start;padding:64px 0;}
+.bio-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:28px;text-align:center;position:sticky;top:120px;}
+.avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--green) 0%,var(--gold) 100%);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:var(--white);margin:0 auto 16px;}
+.bio-card h3{font-size:18px;font-weight:900;color:var(--green);margin-bottom:3px;}
+.bio-role{font-size:12.5px;color:var(--gold-dk);font-weight:700;margin-bottom:12px;}
+.bio-text{font-size:12.5px;color:var(--text2);line-height:1.65;}
+.exp-row{display:flex;justify-content:space-around;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+.en{font-size:20px;font-weight:900;color:var(--green);}
+.el{font-size:11px;color:var(--text3);}
+.timeline{display:flex;flex-direction:column;}
+.tl-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--bg2);}
+.tl-item:last-child{border-bottom:none;}
+.tl-dot{width:32px;height:32px;border-radius:50%;border:2px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--text2);flex-shrink:0;margin-top:2px;}
+.tl-dot.hi{border-color:var(--gold-dk);color:var(--gold);background:rgba(200,146,46,.08);}
+.tl-info h4{font-size:14.5px;font-weight:800;color:var(--green);margin-bottom:2px;}
+.tl-role{font-size:11.5px;color:var(--gold-dk);font-weight:700;margin-bottom:4px;}
+.tl-info p{font-size:12.5px;color:var(--text2);line-height:1.6;}
+.story-box{background:linear-gradient(135deg,rgba(44,84,56,.05) 0%,rgba(200,146,46,.04) 100%);border:1px solid rgba(44,84,56,.12);border-left:3px solid var(--gold);border-radius:10px;padding:20px;margin-top:12px;}
+.story-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-dk);margin-bottom:7px;}
+.story-box p{font-size:12.5px;color:var(--text);line-height:1.7;}
+.fw-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.fw-pill{font-size:12px;font-weight:600;padding:6px 13px;border-radius:100px;background:var(--white);color:var(--green);border:1.5px solid var(--border);transition:all .15s;cursor:default;}
+.fw-pill:hover{border-color:var(--gold);color:var(--gold-dk);}
+
+/* ── CONTACT ── */
+.contact-wrap{min-height:calc(100vh - var(--nav-h));display:flex;align-items:center;padding:64px 0;}
+.contact-inner{max-width:620px;margin:0 auto;text-align:center;}
+.contact-inner .sec-sub{margin:14px auto 36px;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px;}
+.contact-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:24px;text-align:left;text-decoration:none;color:inherit;display:block;transition:all .15s;}
+.contact-card:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(200,146,46,.13);}
+.cc-icon{font-size:22px;margin-bottom:9px;}
+.contact-card h4{font-size:14.5px;font-weight:800;color:var(--green);margin-bottom:3px;}
+.contact-card p{font-size:12.5px;color:var(--text2);}
+.cc-detail{font-size:12px;color:var(--gold-dk);font-weight:600;margin-top:7px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .svc-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;}
+  .steps::before{display:none;}
+  .price-grid{grid-template-columns:1fr;}
+  .about-layout{grid-template-columns:1fr;}
+  .bio-card{position:static;}
+  .hero-stats{gap:28px;}
+  .cert-row{flex-direction:column;align-items:flex-start;}
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  :root{--nav-h:64px;}
+
+  /* Nav — single row, tighter on mobile */
+  .topbar{height:64px;padding:0 12px;}
+  .topbar-inner{gap:8px;}
+  .logo-img{max-width:110px;height:28px;}
+  .cta-nav{display:none;}
+  .tabs-nav{
+    gap:0;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    border-radius:6px;
+    padding:2px 4px;
+    flex-shrink:1;
+    min-width:0;
+  }
+  .tabs-nav::-webkit-scrollbar{display:none;}
+  .tab-btn{padding:5px 10px;font-size:11px;flex-shrink:0;white-space:nowrap;}
+  .lang-btn{padding:4px 8px;font-size:11px;}
+
+  /* Layout */
+  .container{padding:0 16px;}
+
+  /* Hero */
+  .hero-wrap{padding:36px 0 28px;}
+  .hero-title{font-size:clamp(24px,6.5vw,36px);letter-spacing:-.5px;}
+  .hero-sub{font-size:15px;}
+  .hero-btns{flex-direction:column;gap:10px;}
+  .hero-btns .btn{width:100%;justify-content:center;}
+  .hero-stats{flex-wrap:wrap;gap:18px;}
+  .stat-num{font-size:24px;}
+
+  /* Mission */
+  .mission-wrap{padding:24px 0;}
+  .mission-text{font-size:14px;}
+
+  /* Services */
+  .svc-header{padding:40px 0 32px;}
+  .svc-card{padding:24px 20px;}
+
+  /* How it works */
+  .hiw-header{padding:40px 0 32px;}
+  .step p{max-width:100%;}
+
+  /* Pricing */
+  .price-header{padding:40px 0 28px;}
+  .price-card{padding:24px 20px;}
+  .cert-row{padding:20px;flex-direction:column;align-items:flex-start;gap:14px;}
+  .cert-row .btn{width:100%;justify-content:center;}
+
+  /* About */
+  .about-layout{padding:36px 0;}
+
+  /* Contact */
+  .contact-wrap{padding:40px 0;}
+  .contact-grid{grid-template-columns:1fr;}
+
+  /* Buttons — tap-friendly */
+  .btn{padding:13px 22px;font-size:14px;min-height:44px;}
+  .btn-outline{min-height:44px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="logo" onclick="switchTab('home');return false;">
+      <img src="./liova-logo.png" alt="Liova.ai" class="logo-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-txt" style="display:none">Liova<span class="dot">.ai</span></span>
+    </a>
+    <div class="tabs-nav">
+      <button class="tab-btn active" data-tab="home" data-lbl="nav.home">Home</button>
+      <button class="tab-btn" data-tab="services" data-lbl="nav.services">Services</button>
+      <button class="tab-btn" data-tab="hiw" data-lbl="nav.hiw">How It Works</button>
+      <button class="tab-btn" data-tab="pricing" data-lbl="nav.pricing">Pricing</button>
+      <button class="tab-btn" data-tab="about" data-lbl="nav.about">About</button>
+      <button class="tab-btn" data-tab="contact" data-lbl="nav.contact">Get Started</button>
+    </div>
+    <div class="topbar-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中文</button>
+      </div>
+      <a href="https://calendly.com/echo-wu-liova/30min" target="_blank" class="cta-nav" data-i18n="nav.cta">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<div class="tab-content">
+
+<!-- ═══ HOME ═══ -->
+<div id="tab-home" class="tab-pane active">
+  <div class="container">
+    <div class="hero-wrap">
+      <div class="eyebrow" data-i18n="home.eyebrow">AI-Powered GRC</div>
+      <h1 class="hero-title" data-i18n="home.h1">The GRC partner that <span class="gold-text">actually runs</span> your compliance.</h1>
+      <p class="hero-sub" data-i18n="home.sub">One partner. Full control. You just sign off. No in-house GRC team required.</p>
+      <div class="hero-btns">
+        <a href="https://calendly.com/echo-wu-liova/30min" target="_blank" class="btn btn-gold" data-i18n="home.cta1">Book a Discovery Call →</a>
+        <button class="btn btn-outline" onclick="switchTab('services')" data-i18n="home.cta2">See What We Do</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">10+</div><div class="stat-lbl" data-i18n="home.s1">Years GRC Experience</div></div>
+        <div><div class="stat-num">6</div><div class="stat-lbl" data-i18n="home.s2">Compliance Frameworks</div></div>
+        <div><div class="stat-num" style="color:var(--gold)">100%</div><div class="stat-lbl" data-i18n="home.s3">GRC Ops Offboarded</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="mission-wrap">
+    <div class="container">
+      <p class="mission-text" data-i18n="home.mission">We build the future of tech-enabled trust, replacing frustrating automated alerts and template-built compliance with precision engineering and veteran GRC guidance that passes any enterprise test.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<div id="tab-services" class="tab-pane">
+  <div class="container">
+    <div class="svc-header">
+      <div class="eyebrow" data-i18n="svc.eyebrow">Services</div>
+      <h2 class="sec-title" data-i18n="svc.title">Everything GRC. Nothing else to manage.</h2>
+      <p class="sec-sub" data-i18n="svc.sub">Consulting + software in one. One partner handles controls, questionnaires, and audits — end to end.</p>
+    </div>
+    <div class="svc-grid">
+
+      <!-- Row 1: Sales Enablement + Customer Trust Infrastructure -->
+      <div class="svc-card">
+        <div class="svc-icon">&#x1F680;</div>
+        <h3 data-i18n="svc.s3.t">Sales Enablement Suite</h3>
+        <p data-i18n="svc.s3.d">Turn compliance into a revenue accelerator. AI-powered questionnaire bot, Security Battlecard for your AEs/SEs, Security One-Pager for prospects (significantly reduces follow-up security questionnaires), Objection Handling Guide for enterprise CISO pushback — plus live support on your sales calls.</p>
+        <div class="stags">
+          <span class="stag" data-i18n="svc.s3.t1">Questionnaire Bot</span>
+          <span class="stag" data-i18n="svc.s3.t2">Security Battlecard</span>
+          <span class="stag" data-i18n="svc.s3.t3">Security One-Pager</span>
+          <span class="stag" data-i18n="svc.s3.t4">Objection Guide</span>
+          <span class="stag" data-i18n="svc.s3.t5">Sales Call Support</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">&#x1F3DB;&#xFE0F;</div>
+        <h3 data-i18n="svc.s4.t">Customer Trust Infrastructure</h3>
+        <p data-i18n="svc.s4.d">Build the security foundation enterprise buyers actually look for: a public Trust Center (security.yourcompany.com), a customized DPA with AI-specific clauses, and a maintained Subprocessor List — the first thing legal teams check. A Trust Center helps accelerate enterprise sales cycles by letting security reviews happen in parallel with evaluations.</p>
+        <div class="stags">
+          <span class="stag" data-i18n="svc.s4.t1">Trust Center</span>
+          <span class="stag" data-i18n="svc.s4.t2">DPA + AI Clauses</span>
+          <span class="stag" data-i18n="svc.s4.t3">Subprocessor List</span>
+          <span class="stag">GDPR SCCs</span>
+        </div>
+      </div>
+
+      <!-- Row 2: Compliance Foundation + Continuous Control Management -->
+      <div class="svc-card">
+        <div class="svc-icon">&#x1F6E1;&#xFE0F;</div>
+        <h3 data-i18n="svc.s1.t">Compliance Foundation</h3>
+        <p data-i18n="svc.s1.d">Gap analysis, policy templates, control design, and framework scoping from scratch. Get audit-ready without guessing what "good" looks like — built on 10 years of hands-on delivery at KPMG, Uber, Salesforce, and Decagon.</p>
+        <div class="stags">
+          <span class="stag">SOC 2</span>
+          <span class="stag">ISO 27001</span>
+          <span class="stag">HIPAA</span>
+          <span class="stag">PCI-DSS</span>
+          <span class="stag">ISO 42001</span>
+          <span class="stag">EU AI Act</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">&#x2699;&#xFE0F;</div>
+        <h3 data-i18n="svc.s2.t">Continuous Control Management</h3>
+        <p data-i18n="svc.s2.d">Daily control performance, evidence collection, alert triage, access reviews, and training tracking — all handled by Liova. No in-house GRC owner needed. We manage or replace your Vanta / Drata, and tell you exactly which alerts you can ignore.</p>
+        <div class="stags">
+          <span class="stag" data-i18n="svc.s2.t1">Access Review</span>
+          <span class="stag" data-i18n="svc.s2.t2">Change Mgmt</span>
+          <span class="stag" data-i18n="svc.s2.t3">Vuln Tracking</span>
+          <span class="stag" data-i18n="svc.s2.t4">Evidence Mapping</span>
+          <span class="stag" data-i18n="svc.s2.t5">Security Training</span>
+        </div>
+      </div>
+
+      <!-- Row 3: AI Governance + Vendor Risk Management -->
+      <div class="svc-card">
+        <div class="svc-icon">&#x1F9E0;</div>
+        <h3 data-i18n="svc.s5.t">AI Governance <span style="font-size:11px;font-weight:700;color:var(--gold);background:rgba(200,146,46,.1);padding:2px 8px;border-radius:4px;margin-left:6px" data-i18n="svc.s5.badge">AI Co. Specialty</span></h3>
+        <p data-i18n="svc.s5.d">Enterprise buyers in 2026 have a separate AI governance checklist. We answer the questions they always ask — "do you train on my data?", "what's your LLM vendor risk?" — with documented policies, ISO 42001 readiness, and an AI Incident Response Plan.</p>
+        <div class="stags">
+          <span class="stag">ISO 42001</span>
+          <span class="stag" data-i18n="svc.s5.t1">AI Usage Policy</span>
+          <span class="stag" data-i18n="svc.s5.t2">LLM Vendor Risk</span>
+          <span class="stag" data-i18n="svc.s5.t3">AI Incident Response</span>
+          <span class="stag">EU AI Act</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">&#x1F50D;</div>
+        <h3 data-i18n="svc.s6.t">Vendor Risk Management</h3>
+        <p data-i18n="svc.s6.d">Track vendor SOC2 reports, map them to your controls, and flag high-risk subprocessors before they become your audit problem. Includes GDPR subprocessor list management and renewal reminders — so third-party risk never catches you off guard at audit time.</p>
+        <div class="stags">
+          <span class="stag" data-i18n="svc.s6.t1">SOC2 Tracking</span>
+          <span class="stag" data-i18n="svc.s6.t2">Risk Flagging</span>
+          <span class="stag">GDPR</span>
+          <span class="stag" data-i18n="svc.s6.t4">Renewal Reminders</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<div id="tab-hiw" class="tab-pane">
+  <div class="container">
+    <div class="hiw-header">
+      <div class="eyebrow" data-i18n="hiw.eyebrow">How It Works</div>
+      <h2 class="sec-title" data-i18n="hiw.title">From zero to audit-ready — then we keep it running.</h2>
+      <p class="sec-sub" data-i18n="hiw.sub">Three phases. One partner. No GRC expertise required from your team.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3 data-i18n="hiw.s1.t">Setup &amp; Scope</h3>
+        <p data-i18n="hiw.s1.d">Gap analysis, scope definition, control design, and policy templates — calibrated to your actual risk profile. Includes delivery of a Security Battlecard and Security One-Pager for your sales team.</p>
+        <div class="step-tags">
+          <span data-i18n="hiw.s1.b1">Gap Analysis</span>
+          <span data-i18n="hiw.s1.b2">Policy Templates</span>
+          <span data-i18n="hiw.s1.b3">Control Design</span>
+          <span data-i18n="hiw.s1.b4">Tool Setup</span>
+          <span data-i18n="hiw.s1.b5">Security Battlecard</span>
+          <span data-i18n="hiw.s1.b6">Security One-Pager</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3 data-i18n="hiw.s2.t">Ongoing Operations</h3>
+        <p data-i18n="hiw.s2.d">Daily controls performed. Questionnaires answered. Alerts triaged. Vendors tracked. You get a monthly summary — not a pile of tasks.</p>
+        <div class="step-tags">
+          <span data-i18n="hiw.s2.b1">Daily Controls</span>
+          <span data-i18n="hiw.s2.b2">Questionnaires</span>
+          <span data-i18n="hiw.s2.b3">Vendor Tracking</span>
+          <span data-i18n="hiw.s2.b4">Monthly Report</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3 data-i18n="hiw.s3.t">Certify When Ready</h3>
+        <p data-i18n="hiw.s3.d">When you need SOC2 or ISO, we coordinate the auditor, package evidence, and guide you through sign-off. You don't need to know the playbook.</p>
+        <div class="step-tags">
+          <span data-i18n="hiw.s3.b1">Auditor Coordination</span>
+          <span data-i18n="hiw.s3.b2">Evidence Package</span>
+          <span data-i18n="hiw.s3.b3">Sign-off Support</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRICING ═══ -->
+<div id="tab-pricing" class="tab-pane">
+  <div class="container">
+    <div class="price-header">
+      <div class="eyebrow" data-i18n="price.eyebrow">Pricing</div>
+      <h2 class="sec-title" data-i18n="price.title">Simple, transparent partnerships.</h2>
+      <p class="sec-sub" data-i18n="price.sub">Pricing is tailored to your team size, framework complexity, and questionnaire volume. Contact us for a custom quote.</p>
+    </div>
+    <p class="price-note" data-i18n="price.note">&#x1F4A1; Every engagement starts with a one-time Setup phase — gap analysis, control design, and policy templates — so your compliance foundation is built correctly from day one.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="ptier" data-i18n="price.p1.tier">Starter</div>
+        <div class="pname" data-i18n="price.p1.name">Essential GRC</div>
+        <div class="pdesc" data-i18n="price.p1.desc">For teams under 20 getting their first compliance framework in place.</div>
+        <ul class="plist">
+          <li data-i18n="price.p1.f1">1 compliance framework (SOC2 or ISO 27001)</li>
+          <li data-i18n="price.p1.f2">Monthly control review &amp; evidence collection</li>
+          <li data-i18n="price.p1.f3">Security questionnaire support (up to 5/mo)</li>
+          <li data-i18n="price.p1.f4">Monthly compliance status report</li>
+          <li data-i18n="price.p1.f5">Vendor risk monitoring (up to 10 vendors)</li>
+        </ul>
+        <a href="mailto:info@liova.ai" class="btn btn-outline" style="justify-content:center;width:100%" data-i18n="price.ctaA">Get in Touch</a>
+      </div>
+      <div class="price-card feat">
+        <div class="feat-badge" data-i18n="price.pop">Most Popular</div>
+        <div class="ptier" data-i18n="price.p2.tier">Growth</div>
+        <div class="pname" data-i18n="price.p2.name">Advanced GRC</div>
+        <div class="pdesc" data-i18n="price.p2.desc">For 20–50 person teams with enterprise customers asking about security. Covers 2–3 frameworks.</div>
+        <ul class="plist">
+          <li data-i18n="price.p2.f1">2–3 frameworks (e.g. SOC2 + ISO 27001 + PCI)</li>
+          <li data-i18n="price.p2.f2">Weekly control monitoring &amp; evidence</li>
+          <li data-i18n="price.p2.f3">Security questionnaire support (up to 15/mo)</li>
+          <li data-i18n="price.p2.f4">Live enterprise sales call security support</li>
+          <li data-i18n="price.p2.f5">Vendor risk tracking (up to 30 vendors)</li>
+          <li data-i18n="price.p2.f6">Dedicated Slack channel for direct access</li>
+        </ul>
+        <a href="https://calendly.com/echo-wu-liova/30min" target="_blank" class="btn btn-gold" style="justify-content:center;width:100%" data-i18n="price.ctaB">Book a Discovery Call &#x2192;</a>
+      </div>
+      <div class="price-card">
+        <div class="ptier" data-i18n="price.p3.tier">Enterprise</div>
+        <div class="pname" data-i18n="price.p3.name">Full-Scale GRC</div>
+        <div class="pdesc" data-i18n="price.p3.desc">For 50+ person teams with multi-framework, international, or complex regulatory requirements.</div>
+        <ul class="plist">
+          <li data-i18n="price.p3.f1">Multiple frameworks available (SOC2, ISO 27001, PCI, HIPAA, EU AI Act &amp; more)</li>
+          <li data-i18n="price.p3.f2">Daily control operations</li>
+          <li data-i18n="price.p3.f3">Multi-region compliance (US + EU + JP)</li>
+          <li data-i18n="price.p3.f4">Board-level risk reporting</li>
+          <li data-i18n="price.p3.f5">Full audit management, end-to-end</li>
+          <li data-i18n="price.p3.f6">Priority response SLA</li>
+        </ul>
+        <a href="mailto:info@liova.ai" class="btn btn-outline" style="justify-content:center;width:100%" data-i18n="price.ctaA">Contact Us</a>
+      </div>
+    </div>
+    <div class="cert-row">
+      <div>
+        <h3 data-i18n="price.cert.t">&#x2736; Certification Project — SOC2 / ISO 27001 / ISO 42001</h3>
+        <p data-i18n="price.cert.d">When you're ready to certify, we handle everything: evidence packaging, auditor coordination, and sign-off support. This is a separate, clearly-scoped project on top of your subscription.</p>
+      </div>
+      <a href="https://calendly.com/echo-wu-liova/30min" target="_blank" class="btn btn-gold" style="white-space:nowrap;flex-shrink:0" data-i18n="price.cert.cta">Ask About Certification &#x2192;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div id="tab-about" class="tab-pane">
+  <div class="container">
+    <div class="about-layout">
+      <div>
+        <div class="bio-card">
+          <div class="avatar">E</div>
+          <h3>Echo Wu</h3>
+          <div class="bio-role" data-i18n="about.role">Founder, Liova.ai</div>
+          <p class="bio-text" data-i18n="about.bio">10+ years in GRC across Big 4, pre-IPO unicorns, and enterprise SaaS. I'm the person startups call when compliance needs to actually work.</p>
+          <div class="exp-row">
+            <div><div class="en">10+</div><div class="el" data-i18n="about.m1">Yrs GRC</div></div>
+            <div><div class="en">6</div><div class="el" data-i18n="about.m2">Frameworks</div></div>
+            <div><div class="en">Bay</div><div class="el">Area, CA</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow" data-i18n="about.eyebrow">Experience</div>
+        <h2 class="sec-title" data-i18n="about.title">GRC expertise built across the most demanding environments in tech.</h2>
+        <div class="timeline" style="margin-top:28px">
+          <div class="tl-item">
+            <div class="tl-dot">K</div>
+            <div class="tl-info">
+              <h4>KPMG</h4>
+              <div class="tl-role" data-i18n="about.k.r">GRC Consulting</div>
+              <p data-i18n="about.k.d">Foundation in enterprise audit, risk frameworks, and control design. Industries served: banking, semiconductor, EV, SaaS, fintech, healthcare, and more.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">U</div>
+            <div class="tl-info">
+              <h4>Uber</h4>
+              <div class="tl-role" data-i18n="about.u.r">Compliance · Pre-IPO</div>
+              <p data-i18n="about.u.d">IPO Readiness Assessment; built SOX control framework from scratch in a high-pressure, Board-level scrutiny environment.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot hi">SF</div>
+            <div class="tl-info">
+              <h4>Salesforce</h4>
+              <div class="tl-role" data-i18n="about.sf.r">GRC Manager</div>
+              <p data-i18n="about.sf.d">Led simultaneous certifications across SOC2, ISO 27001, ISO 42001, PCI-DSS, C5, and ISMAP. Enterprise-scale, multi-framework delivery.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot hi">D</div>
+            <div class="tl-info">
+              <h4>Decagon AI</h4>
+              <div class="tl-role" data-i18n="about.d.r">Head of GRC · Built from zero</div>
+              <p data-i18n="about.d.d">Built the entire GRC function from scratch: policy framework, SOC2, PCI, vendor risk management, and a security questionnaire bot.</p>
+              <div class="story-box">
+                <div class="story-label" data-i18n="about.story.lbl">Customer Trust → Enterprise Sales</div>
+                <p data-i18n="about.story.txt">As Decagon scaled enterprise sales, deals were stalling in "security review." Prospects sent complex questionnaires the sales team couldn't answer — each unanswered question meant a delayed or lost deal. I built a security questionnaire bot powered by company policies and past responses, then started joining enterprise sales calls directly to resolve security concerns in real time. Objections that previously stalled deals for weeks were addressed on the spot. Enterprise sales velocity improved significantly — security compliance shifted from a blocker into a trust signal that helped close deals faster.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:28px">
+          <div class="eyebrow" data-i18n="about.fw">Framework Expertise</div>
+          <div class="fw-pills" style="margin-top:14px">
+            <span class="fw-pill">SOC 2</span>
+            <span class="fw-pill">ISO 27001</span>
+            <span class="fw-pill">ISO 42001 (AI Gov)</span>
+            <span class="fw-pill">PCI-DSS</span>
+            <span class="fw-pill">HIPAA</span>
+            <span class="fw-pill">SOX / ITGC</span>
+            <span class="fw-pill">EU AI Act</span>
+            <span class="fw-pill">ISMAP</span>
+            <span class="fw-pill">C5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div id="tab-contact" class="tab-pane">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-inner">
+        <div class="eyebrow" data-i18n="contact.eyebrow">Get Started</div>
+        <h2 class="sec-title" style="margin-top:14px" data-i18n="contact.title">Ready to take compliance off your plate?</h2>
+        <p class="sec-sub" data-i18n="contact.sub">Book a 30-minute discovery call. We'll review your current GRC posture and show you exactly what audit-ready looks like for your stage.</p>
+        <a href="https://calendly.com/echo-wu-liova/30min" target="_blank" class="btn btn-gold" style="font-size:16px;padding:15px 34px" data-i18n="contact.cta">Book a Discovery Call &#x2192;</a>
+        <div class="contact-grid">
+          <a href="mailto:info@liova.ai" class="contact-card">
+            <div class="cc-icon">&#x2709;&#xFE0F;</div>
+            <h4 data-i18n="contact.e.t">Email Directly</h4>
+            <p data-i18n="contact.e.d">Reach Echo directly for any questions.</p>
+            <div class="cc-detail">info@liova.ai</div>
+          </a>
+          <a href="https://calendly.com/echo-wu-liova/30min" target="_blank" class="contact-card">
+            <div class="cc-icon">&#x1F4C5;</div>
+            <h4 data-i18n="contact.c.t">Book a Call</h4>
+            <p data-i18n="contact.c.d">30-minute discovery conversation.</p>
+            <div class="cc-detail" data-i18n="contact.c.det">Schedule via Calendly</div>
+          </a>
+        </div>
+        <div style="margin-top:28px;font-size:12.5px;color:var(--text3)" data-i18n="contact.foot">Bay Area, California · Serving US and global companies</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /tab-content -->
+
+<script>
+// ── TABS ──
+function switchTab(name) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const pane = document.getElementById('tab-' + name);
+  const btn = document.querySelector('[data-tab="' + name + '"]');
+  if (pane) pane.classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('.tab-btn').forEach(b => {
+  b.addEventListener('click', () => switchTab(b.dataset.tab));
+});
+
+// ── I18N ──
+const T = {
+  en: {
+    nav: { home:'Home', services:'Services', hiw:'How It Works', pricing:'Pricing', about:'About', contact:'Get Started', cta:'Book a Call' },
+    home: {
+      eyebrow:'AI-Powered GRC',
+      h1:'The GRC partner that <span style="color:var(--gold)">actually runs</span> your compliance.',
+      sub:'One partner. Full control. You just sign off. No in-house GRC team required.',
+      cta1:'Book a Discovery Call →', cta2:'See What We Do',
+      s1:'Years GRC Experience', s2:'Compliance Frameworks', s3:'GRC Ops Offboarded',
+      mission:'We build the future of tech-enabled trust, replacing frustrating automated alerts and template-built compliance with precision engineering and veteran GRC guidance that passes any enterprise test.'
+    },
+    svc: {
+      eyebrow:'Services', title:'Everything GRC. Nothing else to manage.',
+      sub:'Consulting + software in one. One partner handles controls, questionnaires, and audits — end to end.',
+      s1:{ t:'Compliance Foundation', d:'Gap analysis, policy templates, control design, and framework scoping from scratch. Get audit-ready without guessing what "good" looks like — built on 10 years of hands-on delivery at KPMG, Uber, Salesforce, and Decagon.' },
+      s2:{ t:'Continuous Control Management', d:'Daily control performance, evidence collection, alert triage, access reviews, and training tracking — all handled by Liova. No in-house GRC owner needed. We manage or replace your Vanta / Drata, and tell you exactly which alerts you can ignore.', t1:'Access Review', t2:'Change Mgmt', t3:'Vuln Tracking', t4:'Evidence Mapping', t5:'Security Training' },
+      s3:{ t:'Sales Enablement Suite', d:'Turn compliance into a revenue accelerator. AI-powered questionnaire bot, Security Battlecard for your AEs/SEs, Security One-Pager for prospects (significantly reduces follow-up security questionnaires), Objection Handling Guide for enterprise CISO pushback — plus live support on your sales calls.', t1:'Questionnaire Bot', t2:'Security Battlecard', t3:'Security One-Pager', t4:'Objection Guide', t5:'Sales Call Support' },
+      s4:{ t:'Customer Trust Infrastructure', d:'Build the security foundation enterprise buyers actually look for: a public Trust Center (security.yourcompany.com), a customized DPA with AI-specific clauses, and a maintained Subprocessor List — the first thing legal teams check. A Trust Center helps accelerate enterprise sales cycles by letting security reviews happen in parallel with evaluations.', t1:'Trust Center', t2:'DPA + AI Clauses', t3:'Subprocessor List' },
+      s5:{ t:'AI Governance', badge:'AI Co. Specialty', d:'Enterprise buyers in 2026 have a separate AI governance checklist. We answer the questions they always ask — "do you train on my data?", "what\'s your LLM vendor risk?" — with documented policies, ISO 42001 readiness, and an AI Incident Response Plan.', t1:'AI Usage Policy', t2:'LLM Vendor Risk', t3:'AI Incident Response' },
+      s6:{ t:'Vendor Risk Management', d:'Track vendor SOC2 reports, map them to your controls, and flag high-risk subprocessors before they become your audit problem. Includes GDPR subprocessor list management and renewal reminders — so third-party risk never catches you off guard at audit time.', t1:'SOC2 Tracking', t2:'Risk Flagging', t4:'Renewal Reminders' }
+    },
+    hiw: {
+      eyebrow:'How It Works', title:'From zero to audit-ready — then we keep it running.',
+      sub:'Three phases. One partner. No GRC expertise required from your team.',
+      s1:{ t:'Setup & Scope', d:'Gap analysis, scope definition, control design, and policy templates — calibrated to your actual risk profile. Includes delivery of a Security Battlecard and Security One-Pager for your sales team.', b1:'Gap Analysis', b2:'Policy Templates', b3:'Control Design', b4:'Tool Setup', b5:'Security Battlecard', b6:'Security One-Pager' },
+      s2:{ t:'Ongoing Operations', d:'Daily controls performed. Questionnaires answered. Alerts triaged. Vendors tracked. You get a monthly summary — not a pile of tasks.', b1:'Daily Controls', b2:'Questionnaires', b3:'Vendor Tracking', b4:'Monthly Report' },
+      s3:{ t:'Certify When Ready', d:"When you need SOC2 or ISO, we coordinate the auditor, package evidence, and guide you through sign-off. You don't need to know the playbook.", b1:'Auditor Coordination', b2:'Evidence Package', b3:'Sign-off Support' }
+    },
+    price: {
+      eyebrow:'Pricing', title:'Simple, transparent partnerships.',
+      sub:'Pricing is tailored to your team size, framework complexity, and questionnaire volume. Contact us for a custom quote.',
+      note:'💡 Every engagement starts with a one-time Setup phase — gap analysis, control design, and policy templates — so your compliance foundation is built correctly from day one.',
+      pop:'Most Popular',
+      p1:{ tier:'Starter', name:'Essential GRC', desc:'For teams under 20 getting their first compliance framework in place.', f1:'1 compliance framework (SOC2 or ISO 27001)', f2:'Monthly control review & evidence collection', f3:'Security questionnaire support (up to 5/mo)', f4:'Monthly compliance status report', f5:'Vendor risk monitoring (up to 10 vendors)' },
+      p2:{ tier:'Growth', name:'Advanced GRC', desc:'For 20–50 person teams with enterprise customers asking about security. Covers 2–3 frameworks.', f1:'2–3 frameworks (e.g. SOC2 + ISO 27001 + PCI)', f2:'Weekly control monitoring & evidence', f3:'Security questionnaire support (up to 15/mo)', f4:'Live enterprise sales call security support', f5:'Vendor risk tracking (up to 30 vendors)', f6:'Dedicated Slack channel for direct access' },
+      p3:{ tier:'Enterprise', name:'Full-Scale GRC', desc:'For 50+ person teams with multi-framework, international, or complex regulatory requirements.', f1:'Multiple frameworks available (SOC2, ISO 27001, PCI, HIPAA, EU AI Act & more)', f2:'Daily control operations', f3:'Multi-region compliance (US + EU + JP)', f4:'Board-level risk reporting', f5:'Full audit management, end-to-end', f6:'Priority response SLA' },
+      cert:{ t:'✦ Certification Project — SOC2 / ISO 27001 / ISO 42001', d:"When you're ready to certify, we handle everything: evidence packaging, auditor coordination, and sign-off support. This is a separate, clearly-scoped project on top of your subscription.", cta:'Ask About Certification →' },
+      ctaA:'Get in Touch', ctaB:'Book a Discovery Call →'
+    },
+    about: {
+      eyebrow:'Experience', title:'GRC expertise built across the most demanding environments in tech.',
+      role:'Founder, Liova.ai', bio:"10+ years in GRC across Big 4, pre-IPO unicorns, and enterprise SaaS. I'm the person startups call when compliance needs to actually work.",
+      m1:'Yrs GRC', m2:'Frameworks',
+      k:{ r:'GRC Consulting', d:'Foundation in enterprise audit, risk frameworks, and control design. Industries served: banking, semiconductor, EV, SaaS, fintech, healthcare, and more.' },
+      u:{ r:'Compliance · Pre-IPO', d:'IPO Readiness Assessment; built SOX control framework from scratch in a high-pressure, Board-level scrutiny environment.' },
+      sf:{ r:'GRC Manager', d:'Led simultaneous certifications across SOC2, ISO 27001, ISO 42001, PCI-DSS, C5, and ISMAP. Enterprise-scale, multi-framework delivery.' },
+      d:{ r:'Head of GRC · Built from zero', d:'Built the entire GRC function from scratch: policy framework, SOC2, PCI, vendor risk management, and a security questionnaire bot.' },
+      story:{ lbl:'Customer Trust → Enterprise Sales', txt:"As Decagon scaled enterprise sales, deals were stalling in \"security review.\" Prospects sent complex questionnaires the sales team couldn't answer — each unanswered question meant a delayed or lost deal. I built a security questionnaire bot powered by company policies and past responses, then started joining enterprise sales calls directly to resolve security concerns in real time. Objections that previously stalled deals for weeks were addressed on the spot. Enterprise sales velocity improved significantly — security compliance shifted from a blocker into a trust signal that helped close deals faster." },
+      fw:'Framework Expertise'
+    },
+    contact: {
+      eyebrow:'Get Started', title:'Ready to take compliance off your plate?',
+      sub:"Book a 30-minute discovery call. We'll review your current GRC posture and show you exactly what audit-ready looks like for your stage.",
+      cta:'Book a Discovery Call →',
+      e:{ t:'Email Directly', d:'Reach Echo directly for any questions.' },
+      c:{ t:'Book a Call', d:'30-minute discovery conversation.', det:'Schedule via Calendly' },
+      foot:'Bay Area, California · Serving US and global companies'
+    }
+  },
+  zh: {
+    nav: { home:'首页', services:'服务', hiw:'合作流程', pricing:'定价', about:'关于我们', contact:'开始合作', cta:'预约咨询' },
+    home: {
+      eyebrow:'AI 驱动的 GRC',
+      h1:'你的合规，<span style="color:var(--gold)">真正外包</span>给我们。',
+      sub:'一个合作伙伴，搞定全流程。你只需在关键时刻出现，其余交给 Liova。',
+      cta1:'预约免费咨询 →', cta2:'了解服务内容',
+      s1:'年 GRC 经验', s2:'支持的合规框架', s3:'合规运营外包率',
+      mission:'我们打造技术赋能信任的未来。我们用精准的基础架构与资深 GRC 专家指导，取代那些令人沮丧的自动化警报和模版化合规，确保通过任何大厂的检验。'
+    },
+    svc: {
+      eyebrow:'服务内容', title:'GRC 全覆盖，无需再管其他。',
+      sub:'咨询 + 软件一体化。控制、问卷、审计，一个合作伙伴端到端搞定。',
+      s1:{ t:'合规体系搭建', d:'从零开始：Gap 分析、Policy 模版、控制体系设计、框架 Scope 定义。我们在 KPMG、Uber、Salesforce、Decagon 都亲手做过——你不用猜"好的合规"是什么样的。' },
+      s2:{ t:'持续控制运维', d:'日常控制执行、证据收集、告警处理、访问权限审查、安全培训追踪——全部由 Liova 负责。无需 in-house GRC 人员，工程师不再被打扰。现有 Vanta/Drata 我们帮你管，或直接替代。', t1:'访问权限审查', t2:'变更管理', t3:'漏洞追踪', t4:'证据对应控制', t5:'安全培训' },
+      s3:{ t:'销售赋能套件', d:'让合规直接变成销售收入。AI 安全问卷机器人、给 AE/SE 用的 Security Battlecard、主动发给潜在客户的 Security One-Pager（显著减少后续安全问卷数量）、应对企业 CISO 的 Objection Handling Guide，以及现场 Sales Call 安全支持。', t1:'问卷机器人', t2:'Security Battlecard', t3:'Security One-Pager', t4:'异议应对指南', t5:'Sales Call 支持' },
+      s4:{ t:'客户信任基础设施', d:'构建企业采购方真正在找的安全证明：公开的 Trust Center（security.yourcompany.com）、包含 AI 专项条款的 DPA，以及持续维护的 Subprocessor 清单——这是 legal 团队审查的第一站。Trust Center 可帮助加速企业销售周期，让安全审查与评估流程并行推进。', t1:'Trust Center 搭建', t2:'DPA + AI 条款', t3:'Subprocessor 清单' },
+      s5:{ t:'AI 治理', badge:'AI 公司专属', d:'2026 年企业采购已单独设立 AI 治理审查项。我们帮你回答每次都会被问到的问题——"你们用我的数据训练模型吗？""你们的 LLM 供应商风险怎么管？"——有完整的 Policy 文件、ISO 42001 就绪评估和 AI 应急响应计划做支撑。', t1:'AI 使用 Policy', t2:'LLM 供应商风险', t3:'AI 应急响应计划' },
+      s6:{ t:'供应商风险管理', d:'追踪供应商 SOC2 报告，与你的控制要求比对，提前标记高风险 subprocessor。包含 GDPR subprocessor 清单管理与续期提醒——确保第三方风险在审计时不会打你个措手不及。', t1:'SOC2 追踪', t2:'风险标记', t4:'续期提醒' }
+    },
+    hiw: {
+      eyebrow:'合作流程', title:'从零搭建到审计就绪，然后持续维护。',
+      sub:'三个阶段，一个合作伙伴，你的团队无需懂 GRC。',
+      s1:{ t:'搭建与定 Scope', d:'Gap 分析、Scope 定义、控制设计、Policy 模版——针对你的实际风险校准，同时为你的销售团队提供 Security Battlecard 和 Security One-Pager。', b1:'Gap 分析', b2:'Policy 模版', b3:'控制设计', b4:'工具配置', b5:'Security Battlecard', b6:'Security One-Pager' },
+      s2:{ t:'持续运营', d:'日常控制执行、问卷回答、告警处理、供应商追踪。你每月收到一份摘要，而不是一堆待办事项。', b1:'日常控制', b2:'问卷回答', b3:'供应商追踪', b4:'月度报告' },
+      s3:{ t:'按需认证', d:'当你需要 SOC2 或 ISO 认证，我们协调审计师、整理证据、全程陪同签字确认。你不需要懂认证流程。', b1:'审计师协调', b2:'证据整理', b3:'签字支持' }
+    },
+    price: {
+      eyebrow:'定价', title:'简单透明的合作模式。',
+      sub:'定价根据公司规模、框架复杂度和问卷量定制。联系我们获取专属报价。',
+      note:'💡 所有套餐均包含一次性启动服务：Gap 分析、控制设计、Policy 模版——确保合规体系从第一天起正确建立。',
+      pop:'最受欢迎',
+      p1:{ tier:'基础版', name:'核心 GRC', desc:'适合 20 人以下，首次建立合规框架的团队。', f1:'1 个合规框架（SOC2 或 ISO 27001）', f2:'月度控制审查与证据收集', f3:'安全问卷支持（每月最多 5 份）', f4:'月度合规状态报告', f5:'供应商风险监控（最多 10 家）' },
+      p2:{ tier:'成长版', name:'进阶 GRC', desc:'适合 20–50 人、企业客户开始问安全问题的团队，覆盖 2–3 个框架。', f1:'2–3 个框架（如 SOC2 + ISO 27001 + PCI）', f2:'每周控制监控与证据收集', f3:'安全问卷支持（每月最多 15 份）', f4:'现场企业 Sales Call 安全支持', f5:'供应商风险追踪（最多 30 家）', f6:'专属 Slack 频道直接沟通' },
+      p3:{ tier:'企业版', name:'全规模 GRC', desc:'适合 50+ 人、多框架、跨境或复杂合规需求的团队。', f1:'多种框架可选（SOC2、ISO 27001、PCI、HIPAA、EU AI Act 等）', f2:'每日控制运营', f3:'多地区合规（美 + 欧 + 日）', f4:'Board 级别风险报告', f5:'全流程审计管理', f6:'优先响应 SLA' },
+      cert:{ t:'✦ 认证项目 — SOC2 / ISO 27001 / ISO 42001', d:'当你准备好认证，我们全程处理：证据整理、审计师协调、签字确认支持。这是独立于订阅之外的单独项目。', cta:'询问认证服务 →' },
+      ctaA:'联系我们', ctaB:'预约免费咨询 →'
+    },
+    about: {
+      eyebrow:'创始人背景', title:'在科技行业最高要求的环境中积累的 GRC 专业能力。',
+      role:'创始人，Liova.ai / 萱野', bio:'10 年+ GRC 经验，横跨四大、上市前独角兽、企业级 SaaS。创业公司在合规关键时刻找的就是我这样的人。',
+      m1:'年 GRC 经验', m2:'合规框架',
+      k:{ r:'GRC 咨询', d:'打下企业审计、风险框架和控制体系设计的基础，服务行业包括：银行、半导体、电动车、SaaS 公司、Fintech、医疗等多个行业。' },
+      u:{ r:'Compliance · IPO 前', d:'IPO Readiness Assessment；从零搭建 SOX 控制体系，高压环境，直面 Board 级审查。' },
+      sf:{ r:'GRC Manager', d:'同时主导 SOC2、ISO 27001、ISO 42001、PCI-DSS、C5、ISMAP 六项认证，企业级多框架并行交付。' },
+      d:{ r:'Head of GRC · 从零搭建', d:'从零搭建完整 GRC 体系：Policy 框架、SOC2、PCI、供应商风险管理，以及安全问卷机器人。' },
+      story:{ lbl:'客户信任 → 企业销售加速', txt:'当 Decagon 开始规模化发展企业客户时，交易频繁卡在"安全审查"阶段。客户发来复杂的安全问卷，销售团队无法作答——每一个未回答的问题，都意味着一笔交易的延迟甚至丢失。我构建了一个基于公司 Policy 和历史问卷的安全问卷机器人，并开始直接上企业销售 call，现场实时解答安全问题。原本需要数周才能推进的安全顾虑，在 call 上当场消除。企业销售速度显著提升——安全合规从交易的障碍，变成了建立信任、帮助成交的竞争优势。' },
+      fw:'框架专长'
+    },
+    contact: {
+      eyebrow:'开始合作', title:'准备好把合规彻底交出去了吗？',
+      sub:'预约 30 分钟免费咨询。我们会审视你当前的 GRC 现状，告诉你如何达到审计就绪并长期保持。',
+      cta:'预约免费咨询 →',
+      e:{ t:'直接发邮件', d:'有任何问题直接联系 Echo。' },
+      c:{ t:'预约通话', d:'30 分钟免费咨询。', det:'通过 Calendly 预约' },
+      foot:'湾区，加利福尼亚 · 服务美国本土及出海企业'
+    }
+  }
+};
+
+let lang = 'en';
+
+function get(obj, path) {
+  return path.split('.').reduce((o, k) => (o && o[k] !== undefined ? o[k] : undefined), obj);
+}
+
+function applyLang(l) {
+  const d = T[l];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = get(d, el.dataset.i18n);
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-lbl]').forEach(el => {
+    const v = get(d, el.dataset.lbl);
+    if (v !== undefined) el.textContent = v;
+  });
+}
+
+function setLang(l) {
+  lang = l;
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+  applyLang(l);
+}
+
+applyLang('en');
+</script>
+</body>
+</html>

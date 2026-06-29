@@ -142,6 +142,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .fw-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
 .fw-pill{font-size:12px;font-weight:600;padding:6px 13px;border-radius:100px;background:var(--white);color:var(--green);border:1.5px solid var(--border);transition:all .15s;cursor:default;}
 .fw-pill:hover{border-color:var(--gold);color:var(--gold-dk);}
+.about-divider{height:1px;border:none;margin:8px 0 0;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%);opacity:.55;}
 
 /* ── CONTACT ── */
 .contact-wrap{min-height:calc(100vh - var(--nav-h));display:flex;align-items:center;padding:64px 0;}
@@ -562,6 +563,74 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
         </div>
       </div>
     </div>
+
+    <hr class="about-divider">
+
+    <div class="about-layout">
+      <div>
+        <div class="bio-card">
+          <div class="avatar">W</div>
+          <h3>Wanshu Zhang</h3>
+          <div class="bio-role" data-i18n="about2.role">Co-Founder, Liova.ai</div>
+          <p class="bio-text" data-i18n="about2.bio">11+ years across Big 4 IT audit, public-company IT compliance, and enterprise-scale GRC automation. I build agentic GRC systems that transform manual compliance operations into scalable, explainable, and audit-ready workflows.</p>
+          <div class="exp-row">
+            <div><div class="en">11+</div><div class="el" data-i18n="about2.m1">Yrs GRC</div></div>
+            <div><div class="en">Seattle</div><div class="el">WA</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow" data-i18n="about2.eyebrow">Experience</div>
+        <h2 class="sec-title" data-i18n="about2.title">GRC automation built where compliance, engineering, and AI meet.</h2>
+        <div class="timeline" style="margin-top:28px">
+          <div class="tl-item">
+            <div class="tl-dot">D</div>
+            <div class="tl-info">
+              <h4>Deloitte</h4>
+              <div class="tl-role" data-i18n="about2.de.r">Technology Risk Advisory</div>
+              <p data-i18n="about2.de.d">Foundation in IT audit, SOX, PCI, ISO, control design, and enterprise risk advisory. Served large public-company clients and built the audit rigor behind scalable compliance programs.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">Ex</div>
+            <div class="tl-info">
+              <h4>Expedia</h4>
+              <div class="tl-role" data-i18n="about2.ex.r">IT Compliance · Platform Controls</div>
+              <p data-i18n="about2.ex.d">Led IT compliance across eCommerce, cloud governance, security, privacy, and payment-platform controls. Partnered with product and engineering teams to translate regulatory requirements into practical system and process controls.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot hi">SF</div>
+            <div class="tl-info">
+              <h4>Salesforce</h4>
+              <div class="tl-role" data-i18n="about2.sf.r">GRC Automation &amp; AI</div>
+              <p data-i18n="about2.sf.d">Built enterprise-scale GRC automation across controls monitoring, access governance, evidence validation, risk scoring, and audit operations. Designed automated checks, compliance-as-code workflows, and human-in-the-loop agents for complex enterprise control environments.</p>
+              <div class="story-box">
+                <div class="story-label" data-i18n="about2.story.lbl">Automation → Auditable GRC at Scale</div>
+                <p data-i18n="about2.story.txt">Manual GRC breaks when teams rely on spreadsheets, screenshots, reminders, and one-off evidence collection. My work focuses on turning written policies and control requirements into structured workflows, automated checks, and reliable evidence pipelines. At Salesforce, I built continuous controls monitoring from scratch, created automated validation logic across change, access, and infrastructure workflows, and designed human-in-the-loop agents for signal triage, root-cause grouping, and remediation routing. The goal is not just faster compliance. It is controlled automation: every workflow should be explainable, reviewable, and defensible to auditors, security leaders, and business owners.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:28px">
+          <div class="eyebrow" data-i18n="about2.fw">Areas of Expertise</div>
+          <div class="fw-pills" style="margin-top:14px">
+            <span class="fw-pill" data-i18n="about2.c1">GRC Automation</span>
+            <span class="fw-pill" data-i18n="about2.c2">Compliance-as-Code</span>
+            <span class="fw-pill" data-i18n="about2.c3">Policy-as-Code</span>
+            <span class="fw-pill" data-i18n="about2.c4">Continuous Controls Monitoring</span>
+            <span class="fw-pill" data-i18n="about2.c5">Human-in-the-Loop Agents</span>
+            <span class="fw-pill" data-i18n="about2.c6">Control Testing Automation</span>
+            <span class="fw-pill" data-i18n="about2.c7">Evidence APIs</span>
+            <span class="fw-pill" data-i18n="about2.c8">Security Control Automation</span>
+            <span class="fw-pill" data-i18n="about2.c9">Cloud &amp; Infrastructure Controls</span>
+            <span class="fw-pill" data-i18n="about2.c10">Framework Mapping &amp; Readiness</span>
+            <span class="fw-pill" data-i18n="about2.c11">Risk Scoring</span>
+            <span class="fw-pill" data-i18n="about2.c12">Audit-Ready Evidence</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -662,6 +731,17 @@ const T = {
       story:{ lbl:'Customer Trust → Enterprise Sales', txt:"As Decagon scaled enterprise sales, deals were stalling in \"security review.\" Prospects sent complex questionnaires the sales team couldn't answer — each unanswered question meant a delayed or lost deal. I built a security questionnaire bot powered by company policies and past responses, then started joining enterprise sales calls directly to resolve security concerns in real time. Objections that previously stalled deals for weeks were addressed on the spot. Enterprise sales velocity improved significantly — security compliance shifted from a blocker into a trust signal that helped close deals faster." },
       fw:'Framework Expertise'
     },
+    about2: {
+      eyebrow:'Experience', title:'GRC automation built where compliance, engineering, and AI meet.',
+      role:'Co-Founder, Liova.ai', bio:'11+ years across Big 4 IT audit, public-company IT compliance, and enterprise-scale GRC automation. I build agentic GRC systems that transform manual compliance operations into scalable, explainable, and audit-ready workflows.',
+      m1:'Yrs GRC',
+      de:{ r:'Technology Risk Advisory', d:'Foundation in IT audit, SOX, PCI, ISO, control design, and enterprise risk advisory. Served large public-company clients and built the audit rigor behind scalable compliance programs.' },
+      ex:{ r:'IT Compliance · Platform Controls', d:'Led IT compliance across eCommerce, cloud governance, security, privacy, and payment-platform controls. Partnered with product and engineering teams to translate regulatory requirements into practical system and process controls.' },
+      sf:{ r:'GRC Automation & AI', d:'Built enterprise-scale GRC automation across controls monitoring, access governance, evidence validation, risk scoring, and audit operations. Designed automated checks, compliance-as-code workflows, and human-in-the-loop agents for complex enterprise control environments.' },
+      story:{ lbl:'Automation → Auditable GRC at Scale', txt:'Manual GRC breaks when teams rely on spreadsheets, screenshots, reminders, and one-off evidence collection. My work focuses on turning written policies and control requirements into structured workflows, automated checks, and reliable evidence pipelines. At Salesforce, I built continuous controls monitoring from scratch, created automated validation logic across change, access, and infrastructure workflows, and designed human-in-the-loop agents for signal triage, root-cause grouping, and remediation routing. The goal is not just faster compliance. It is controlled automation: every workflow should be explainable, reviewable, and defensible to auditors, security leaders, and business owners.' },
+      fw:'Areas of Expertise',
+      c1:'GRC Automation', c2:'Compliance-as-Code', c3:'Policy-as-Code', c4:'Continuous Controls Monitoring', c5:'Human-in-the-Loop Agents', c6:'Control Testing Automation', c7:'Evidence APIs', c8:'Security Control Automation', c9:'Cloud & Infrastructure Controls', c10:'Framework Mapping & Readiness', c11:'Risk Scoring', c12:'Audit-Ready Evidence'
+    },
     contact: {
       eyebrow:'Get Started', title:'Ready to take compliance off your plate?',
       sub:"Book a 30-minute discovery call. We'll review your current GRC posture and show you exactly what audit-ready looks like for your stage.",
@@ -719,6 +799,17 @@ const T = {
       d:{ r:'Head of GRC · 从零搭建', d:'从零搭建完整 GRC 体系：Policy 框架、SOC2、PCI、供应商风险管理，以及安全问卷机器人。' },
       story:{ lbl:'客户信任 → 企业销售加速', txt:'当 Decagon 开始规模化发展企业客户时，交易频繁卡在"安全审查"阶段。客户发来复杂的安全问卷，销售团队无法作答——每一个未回答的问题，都意味着一笔交易的延迟甚至丢失。我构建了一个基于公司 Policy 和历史问卷的安全问卷机器人，并开始直接上企业销售 call，现场实时解答安全问题。原本需要数周才能推进的安全顾虑，在 call 上当场消除。企业销售速度显著提升——安全合规从交易的障碍，变成了建立信任、帮助成交的竞争优势。' },
       fw:'框架专长'
+    },
+    about2: {
+      eyebrow:'联合创始人背景', title:'在合规、工程与 AI 交汇处，构建 GRC 自动化。',
+      role:'联合创始人，Liova.ai', bio:'11 年+ 跨 Big 4 IT 审计、上市公司 IT 合规、企业级 GRC 自动化经验。我构建 Agentic GRC 系统，将传统合规工作转化为可规模化、可解释、可审计的工作流。',
+      m1:'年 GRC 经验',
+      de:{ r:'Technology Risk Advisory', d:'奠定 IT 审计、SOX、PCI、ISO、控制设计和企业风险咨询基础。服务大型上市公司客户，形成建设可扩展合规体系所需的审计严谨性。' },
+      ex:{ r:'IT Compliance · Platform Controls', d:'负责 eCommerce、云治理、安全、隐私和支付平台控制相关的 IT 合规。与产品和工程团队合作，将监管要求转化为可落地的系统和流程控制。' },
+      sf:{ r:'GRC Automation & AI', d:'构建企业级 GRC 自动化能力，覆盖控制监控、访问治理、证据验证、风险评分和审计运营。为复杂企业控制环境设计自动化检查、Compliance-as-Code 工作流和 human-in-the-loop agents。' },
+      story:{ lbl:'自动化 → 可审计的规模化 GRC', txt:'当团队依赖表格、截图、提醒和一次性证据收集时，手工 GRC 很快会失效。我的工作重点，是将书面政策和控制要求转化为结构化工作流、自动化检查和可靠的证据链路。在 Salesforce，我从零构建持续控制监控能力，围绕变更、访问和基础设施流程创建自动化验证逻辑，并设计 human-in-the-loop agents，用于信号分流、根因归类和整改路由。目标不只是让合规更快，而是实现受控的自动化：每个工作流都应该可解释、可复核，并经得起审计人员、安全负责人和业务负责人的检验。' },
+      fw:'专长领域',
+      c1:'GRC 自动化', c2:'合规规则代码化', c3:'制度规则代码化', c4:'持续控制监控', c5:'人工介入式 AI Agents', c6:'控制测试自动化', c7:'控制证据 API', c8:'安全控制自动化', c9:'云与基础设施控制', c10:'合规框架映射与就绪评估', c11:'风险评分', c12:'可审计证据'
     },
     contact: {
       eyebrow:'开始合作', title:'准备好把合规彻底交出去了吗？',
